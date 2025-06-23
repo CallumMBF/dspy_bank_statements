@@ -2,11 +2,12 @@ import dspy
 import os
 from golden_dataset import get_golden_dataset
 
-gemini_api_key = os.getenv('GEMINI_API_KEY')
 
 # --- 1. LM Configuration ---
 # Configure the language model
-lm = dspy.LM('gemini/gemini-2.5-flash', api_key=gemini_api_key, temperature=1, max_tokens=10000)
+# gemini_api_key = os.getenv('GEMINI_API_KEY')
+# lm = dspy.LM('gemini/gemini-2.5-flash', api_key=gemini_api_key, temperature=1, max_tokens=10000)
+lm = dspy.LM('azure/gpt-4o-mini-global', api_key = os.getenv('AZURE_OPENAI_API_KEY'), api_base=os.getenv('AZURE_API_BASE'), api_version='2024-12-01-preview')
 dspy.configure(lm=lm)
 
 # --- 2. Signature Definition ---
